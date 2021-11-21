@@ -4,6 +4,7 @@ import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import "../src/components/App.css";
 
 import "semantic-ui-css/semantic.min.css";
 
