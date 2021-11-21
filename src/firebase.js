@@ -1,10 +1,9 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/database";
+import "firebase/compat/storage";
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
+const config = {
   apiKey: "AIzaSyBEOAqOMf9GJb8moPU4ZosyWXWxJIJZzWk",
   authDomain: "chat-app-7544c.firebaseapp.com",
   projectId: "chat-app-7544c",
@@ -13,5 +12,6 @@ const firebaseConfig = {
   appId: "1:886228564455:web:d6962b31af0a444e12a542",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(config);
+
+export default firebase;
