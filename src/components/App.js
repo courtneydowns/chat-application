@@ -41,13 +41,13 @@ const App = ({ currentUser, currentChannel, isPrivateChannel, userPosts, primary
   </Grid>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
   currentChannel: state.channel.currentChannel,
   isPrivateChannel: state.channel.isPrivateChannel,
   userPosts: state.channel.userPosts,
   primaryColor: state.colors.primaryColor,
-  secondaryColor: state.colors.secondaryColor
+  secondaryColor: state.colors.secondaryColor,
 });
 
 export default connect(mapStateToProps)(App);

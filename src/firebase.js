@@ -3,13 +3,13 @@ import "firebase/compat/auth";
 import "firebase/compat/database";
 import "firebase/compat/storage";
 
-const config = {
-  apiKey: "AIzaSyBEOAqOMf9GJb8moPU4ZosyWXWxJIJZzWk",
-  authDomain: "chat-app-7544c.firebaseapp.com",
-  projectId: "chat-app-7544c",
-  storageBucket: "chat-app-7544c.appspot.com",
-  messagingSenderId: "886228564455",
-  appId: "1:886228564455:web:d6962b31af0a444e12a542",
+var config = {
+  apiKey: "AIzaSyAAfDxf5DJE_J65rJGg8HAfoWTIviZhlPE",
+  authDomain: "slack-clone-in-react.firebaseapp.com",
+  projectId: "slack-clone-in-react",
+  storageBucket: "slack-clone-in-react.appspot.com",
+  messagingSenderId: "249889900598",
+  appId: "1:249889900598:web:9868176b553dd79dd13097",
 };
 
 firebase.initializeApp(config);

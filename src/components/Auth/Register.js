@@ -8,7 +8,7 @@ import {
   Button,
   Header,
   Message,
-  Icon
+  Icon,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ class Register extends React.Component {
     passwordConfirmation: "",
     errors: [],
     loading: false,
-    usersRef: firebase.database().ref("users")
+    usersRef: firebase.database().ref("users"),
   };
 
   isFormValid = () => {
@@ -59,79 +59,70 @@ class Register extends React.Component {
     }
   };
 
-  displayErrors = errors =>
+  displayErrors = (errors) =>
     errors.map((error, i) => <p key={i}>{error.message}</p>);
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     if (this.isFormValid()) {
       this.setState({ errors: [], loading: true });
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(createdUser => {
+        .then((createdUser) => {
           console.log(createdUser);
           createdUser.user
             .updateProfile({
               displayName: this.state.username,
               photoURL: `http://gravatar.com/avatar/${md5(
                 createdUser.user.email
-              )}?d=identicon`
+              )}?d=identicon`,
             })
             .then(() => {
               this.saveUser(createdUser).then(() => {
-                console.log("user saved");
-              });
-            })
-            .catch(err => {
-              console.error(err);
-              this.setState({
-                errors: this.state.errors.concat(err),
-                loading: false
+                this.saveUser(createdUser).then(() => {
+                  console.log("user saved");
+                });
               });
             });
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
           this.setState({
             errors: this.state.errors.concat(err),
-            loading: false
+            loading: false,
           });
         });
     }
   };
 
-  saveUser = createdUser => {
+  saveUser = (createdUser) => {
     return this.state.usersRef.child(createdUser.user.uid).set({
       name: createdUser.user.displayName,
-      avatar: createdUser.user.photoURL
+      avatar: createdUser.user.photoURL,
     });
   };
 
   handleInputError = (errors, inputName) => {
-    return errors.some(error => error.message.toLowerCase().includes(inputName))
+    return errors.some((error) =>
+      error.message.toLowerCase().includes(inputName)
+    )
       ? "error"
       : "";
   };
 
   render() {
-    const {
-      username,
-      email,
-      password,
-      passwordConfirmation,
-      errors,
-      loading
-    } = this.state;
+    const { username, email, password, passwordConfirmation, errors, loading } =
+      this.state;
 
     return (
       <Grid textAlign="center" verticalAlign="middle" className="app">
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h1" icon color="orange" textAlign="center">
+          <Header as="h2" icon color="orange" textAlign="center">
             <Icon name="puzzle piece" color="orange" />
             Register for DevChat
           </Header>
@@ -145,6 +136,7 @@ class Register extends React.Component {
                 placeholder="Username"
                 onChange={this.handleChange}
                 value={username}
+                className={this.handleInputError(errors, "username")}
                 type="text"
               />
 

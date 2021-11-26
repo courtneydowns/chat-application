@@ -242,7 +242,6 @@ class Channels extends React.Component {
             </Form>
           </Modal.Content>
 
-          {console.log(this.handleSubmit)}
           <Modal.Actions>
             <Button color="green" inverted onClick={this.handleSubmit}>
               <Icon name="checkmark" /> Add
